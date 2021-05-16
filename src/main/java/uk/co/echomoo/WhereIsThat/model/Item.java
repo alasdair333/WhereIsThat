@@ -25,6 +25,7 @@ public class Item {
     private String name;
 
     @NotBlank(message = "Item description is required.")
+    @Lob
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY)
@@ -34,6 +35,6 @@ public class Item {
     private Instant lastAccessed;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "boxId", referencedColumnName = "id")
     private Box box;
 }

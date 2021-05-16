@@ -5,12 +5,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import uk.co.echomoo.WhereIsThat.dto.LocationDto;
-import uk.co.echomoo.WhereIsThat.model.Box;
 import uk.co.echomoo.WhereIsThat.model.Location;
 import uk.co.echomoo.WhereIsThat.repository.BoxRepository;
-
-import java.time.Instant;
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public abstract class LocationMapper {

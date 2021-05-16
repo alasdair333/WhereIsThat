@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uk.co.echomoo.WhereIsThat.dto.ItemDto;
+import uk.co.echomoo.WhereIsThat.dto.ItemRequest;
+import uk.co.echomoo.WhereIsThat.dto.ItemResponse;
 import uk.co.echomoo.WhereIsThat.service.ItemService;
 
 import java.util.List;
@@ -17,20 +18,20 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping
-    public ResponseEntity<ItemDto> createItem(@RequestBody ItemDto itemDto) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(itemService.save(itemDto));
+    public ResponseEntity<Void> createItem(@RequestBody ItemRequest itemRequest) {
+        itemService.save(itemRequest);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<ItemDto>> getAllItems() {
+    public ResponseEntity<List<ItemResponse>> getAllItems() {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(itemService.getAll());
+                .body(itemService.getAllItems());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ItemDto> getItem(@PathVariable Long id) {
+    public ResponseEntity<ItemResponse> getItem(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(itemService.getItem(id));

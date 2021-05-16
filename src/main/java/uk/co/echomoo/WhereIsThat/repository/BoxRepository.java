@@ -9,5 +9,7 @@ import java.util.Optional;
 
 public interface BoxRepository extends JpaRepository<Box, Long> {
 
+    Optional<Box> findByBoxName(String boxName);
+
     List<Box> findByLocation(Location location);
 }
