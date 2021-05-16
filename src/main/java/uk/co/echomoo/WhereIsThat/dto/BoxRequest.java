@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class LocationDto {
+public class BoxRequest {
 
-    private Long id;
-    private String name;
+    private Long boxId;
+    private String locationName;
+    private String boxName;
     private String description;
-    private Integer numberOfBoxes;
 }

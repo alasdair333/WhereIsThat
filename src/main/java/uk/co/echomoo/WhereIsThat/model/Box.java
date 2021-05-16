@@ -12,10 +12,10 @@ import java.time.Instant;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Box {
 
     @Id
@@ -26,11 +26,13 @@ public class Box {
     private String boxName;
 
     @Nullable
+    @Lob
     private String description;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Item> items;
 
     private Instant creationDate;
     private Instant accessDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( name = "locationId", referencedColumnName = "id")
+    private Location location;
 }

@@ -1,6 +1,5 @@
 package uk.co.echomoo.WhereIsThat.model;
 
-import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.net.URL;
 import java.time.Instant;
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long itemId;
 
     @NotBlank(message = "Name is required.")
     private String name;
@@ -34,4 +32,8 @@ public class Item {
 
     private Instant createdDate;
     private Instant lastAccessed;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Box box;
 }

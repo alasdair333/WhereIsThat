@@ -1,22 +1,30 @@
 package uk.co.echomoo.WhereIsThat.mapper;
 
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import uk.co.echomoo.WhereIsThat.dto.LocationDto;
 import uk.co.echomoo.WhereIsThat.model.Box;
 import uk.co.echomoo.WhereIsThat.model.Location;
+import uk.co.echomoo.WhereIsThat.repository.BoxRepository;
 
+import java.time.Instant;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface LocationMapper {
+public abstract class LocationMapper {
 
-    @Mapping(target = "numberOfBoxes", expression = "java(mapBoxes(location.getBoxes()))")
-    LocationDto mapLocationToDto(Location location);
+    @Autowired
+    private BoxRepository boxRepository;
 
-    default Integer mapBoxes(List<Box> numberOfBoxes) { return numberOfBoxes.size(); }
+    @Mapping(target = "numberOfBoxes", expression = "java(mapBoxes(location))")
+    public abstract LocationDto mapLocationToDto(Location location);
 
+    Integer mapBoxes(Location location) { return boxRepository.findByLocation(location).size(); }
+
+    @InheritInverseConfiguration
     @Mapping(target = "boxes", ignore = true)
-    Location mapDtoToLocation(LocationDto locationDto);
+    public abstract Location mapDtoToLocation(LocationDto locationDto);
 
 }

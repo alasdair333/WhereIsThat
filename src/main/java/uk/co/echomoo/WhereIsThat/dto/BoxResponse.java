@@ -1,18 +1,20 @@
 package uk.co.echomoo.WhereIsThat.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class LocationDto {
+public class BoxResponse {
 
     private Long id;
-    private String name;
+    private String boxName;
+    private String locationName;
     private String description;
-    private Integer numberOfBoxes;
+    private Integer itemCount;
+    private String created;
+    private String accessed;
+
 }
