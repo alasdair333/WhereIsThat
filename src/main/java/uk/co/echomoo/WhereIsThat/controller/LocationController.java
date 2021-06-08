@@ -17,12 +17,14 @@ public class LocationController {
     private final LocationService locationService;
 
     @PostMapping
+    @CrossOrigin
     public ResponseEntity<LocationDto> createLocation(@RequestBody LocationDto locationDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(locationService.save(locationDto));
     }
 
     @GetMapping
+    @CrossOrigin
     public ResponseEntity<List<LocationDto>> getAllLocations() {
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -30,6 +32,7 @@ public class LocationController {
     }
 
     @GetMapping("/{id}")
+    @CrossOrigin
     public ResponseEntity<LocationDto> getLocation(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
