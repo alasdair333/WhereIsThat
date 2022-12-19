@@ -28,7 +28,7 @@ jobs:
           cd whereisthat-git
 
           mvn clean
-          mvn install
+          mvn install -DskipTests=true
         path: /bin/sh
         user: root
     task: run-tests
