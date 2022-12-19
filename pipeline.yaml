@@ -1,7 +1,7 @@
 jobs:
-- name: whereIsThat
+- name: whereisthat
   plan:
-  - get: whereIsThat-git
+  - get: whereisthat-git
     trigger: true
   - config:
       caches:
@@ -16,7 +16,7 @@ jobs:
           tag: 3.8-openjdk-18
         type: registry-image
       inputs:
-      - name: whereIsThat-git
+      - name: whereisthat-git
       platform: linux
       run:
         args:
@@ -25,7 +25,7 @@ jobs:
           java -Xmx32m -version
           javac -J-Xmx32m -version
 
-          cd whereIsThat-git
+          cd whereisthat-git
 
           mvn clean
           mvn install
@@ -36,7 +36,7 @@ jobs:
 
 resources:
 - icon: github
-  name: whereIsThat-git
+  name: whereisthat-git
   source:
     uri: https://github.com/alasdair333/WhereIsThat.git
   type: git
