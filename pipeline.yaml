@@ -13,7 +13,7 @@ jobs:
         name: ""
         source:
           repository: maven
-          tag: 3.8-openjdk-18
+          tag: 3.8.6-amazoncorretto-11
         type: registry-image
       inputs:
       - name: whereisthat-git
