@@ -1,0 +1,42 @@
+jobs:
+- name: WhereIsThat
+  plan:
+  - get: WhereIsThat-git
+    trigger: true
+  - config:
+      caches:
+      - path: $HOME/.m2/repository
+      - path: $HOME/.gradle/caches/
+      - path: $HOME/.gradle/wrapper/
+      container_limits: {}
+      image_resource:
+        name: ""
+        source:
+          repository: maven
+          tag: 3.8-openjdk-18
+        type: registry-image
+      inputs:
+      - name: WhereIsThat-git
+      platform: linux
+      run:
+        args:
+        - -c
+        - |
+          java -Xmx32m -version
+          javac -J-Xmx32m -version
+
+          cd WhereIsThat-git
+
+          mvn clean
+          mvn install
+        path: /bin/sh
+        user: root
+    task: run-tests
+  public: true
+
+resources:
+- icon: github
+  name: WhereIsThat-git
+  source:
+    uri: https://github.com/alasdair333/WhereIsThat.git
+  type: git
