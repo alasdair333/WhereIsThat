@@ -1,12 +1,9 @@
 package uk.co.echomoo.WhereIsThat.model;
 
-import com.sun.istack.Nullable;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import org.jetbrains.annotations.Nullable;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 import java.util.List;

@@ -1,11 +1,8 @@
 package uk.co.echomoo.WhereIsThat.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 import java.util.List;
@@ -16,7 +13,6 @@ import java.util.List;
 @Entity
 @Builder
 public class Item {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
